@@ -1,6 +1,21 @@
 # WordPress-security-snippets
 
 These snippets support all apache and litespeed versions.
+Add them to your .htaccess on your own risk.
+
+There's a check in place to execute only version specific code:
+```
+
+
+<IfModule !mod_authz_core.c>
+ # ... Apache < 2.4
+</IfModule>
+
+<IfModule mod_authz_core.c>
+  # ... Apache >= 2.4
+</IfModule>
+```
+Both should work on litespeed.
 
 ## Protect wp-config.php file
 ```
