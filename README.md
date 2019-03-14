@@ -85,14 +85,17 @@ To do this, you will need to create a .htpasswds file. Many hosts have tools to 
 
 You can either put this file outside of your public web folder (i.e. not in /public_html/ or /domain.com/, depending on your host), or you can put it in the same folder, but you'll want to do some extra security work in your .htaccess file if you do.
 
-Speaking of which, once you've uploaded the .htpasswd file, you need to tell .htaccess where it's at. Assuming you've put .htpasswd in your user's home directory and your htpasswd username is mysecretuser, then you put this in your .htaccess: 
+Speaking of which, once you've uploaded the .htpasswd file, you need to tell .htaccess where it's at. Assuming you've put .htpasswd in your user's home directory and your htpasswd username is mysecretuser, then you put this in your .htaccess:
+
+**Apache**
 ```
 # Password protect www.example.com/myCustomLoginURL login page
 AuthUserFile /path/to/password/file/.htpasswd
 AuthName "Password Protected"
 AuthType Basic
 
-SetEnvIf Request_URI ^/myCustomLoginURL require_auth=true
+SetEnvIf Request_URI .* noauth
+SetEnvIf Request_URI ^/myCustomLoginURL/ !noauth
 
 <IfModule mod_authz_core.c>
     <RequireAny>
@@ -108,6 +111,24 @@ SetEnvIf Request_URI ^/myCustomLoginURL require_auth=true
     Require valid-user
     Allow from env=noauth
 </IfModule>
+```
+
+**LiteSpeed**
+```
+# Password protect www.example.com/myCustomLoginURL login page
+AuthUserFile /path/to/password/file/.htpasswd
+AuthName "Password Protected"
+AuthType Basic
+
+SetEnvIf Request_URI .* noauth
+SetEnvIf Request_URI ^/myCustomLoginURL/ !noauth
+
+Order Deny,Allow
+Deny from all
+Satisfy any
+Require valid-user
+Allow from env=noauth
+
 ```
 
 ## Disable directory listing
