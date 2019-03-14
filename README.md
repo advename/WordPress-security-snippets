@@ -54,7 +54,7 @@ You can either put this file outside of your public web folder (i.e. not in /pub
 
 Speaking of which, once you've uploaded the .htpasswd file, you need to tell .htaccess where it's at. Assuming you've put .htpasswd in your user's home directory and your htpasswd username is mysecretuser, then you put this in your .htaccess: 
 ```
-# Password protect /hola/ login page
+# Password protect www.example.com/myCustomLoginURL login page
 AuthUserFile /path/to/password/file/.htpasswd
 AuthName "Password Protected"
 AuthType Basic
