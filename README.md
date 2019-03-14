@@ -5,8 +5,6 @@ Add them to your .htaccess on your own risk.
 
 There's a check in place to execute only version specific code:
 ```
-
-
 <IfModule !mod_authz_core.c>
  # ... Apache < 2.4
 </IfModule>
