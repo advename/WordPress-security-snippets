@@ -48,7 +48,7 @@ If you use the default directory "wp-login" then follow the codex: https://codex
 **If you somehow changed the login url, use this method:**
 Password protecting your wp-login.php file (and wp-admin folder) can add an extra layer to your server. Because password protecting wp-admin can break any plugin that uses ajax on the front end, it's usually sufficient to just protect wp-login.
 
-To do this, you will need to create a .htpasswds file. Many hosts have tools to do this for you, but if you have to do it manually, you can use this htpasswd generator. Much like your .htaccess file (which is a file that is only an extension), .htpasswd will also have no prefix.
+To do this, you will need to create a .htpasswds file. Many hosts have tools to do this for you, but if you have to do it manually, you can use this [htpasswd generator](http://www.htaccesstools.com/htpasswd-generator/). Much like your .htaccess file (which is a file that is only an extension), .htpasswd will also have no prefix.
 
 You can either put this file outside of your public web folder (i.e. not in /public_html/ or /domain.com/, depending on your host), or you can put it in the same folder, but you'll want to do some extra security work in your .htaccess file if you do.
 
