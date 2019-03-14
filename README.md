@@ -77,3 +77,12 @@ SetEnvIf Request_URI ^/myCustomLoginURL require_auth=true
 </IfModule>
 ```
 
+## Disable directory listing
+```
+Options All -Indexes
+```
+## Disable the server signature
+```
+ServerSignature Off
+```
+
