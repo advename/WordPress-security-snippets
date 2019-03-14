@@ -3,7 +3,7 @@
 These snippets support all apache and litespeed versions.
 Add them to your .htaccess on your own risk.
 
-There's a check in place to execute only version specific code:
+There's a check in place to execute only version specific code for apache:
 ```
 <IfModule !mod_authz_core.c>
  # ... Apache < 2.4
@@ -16,6 +16,7 @@ There's a check in place to execute only version specific code:
 Both should work on litespeed.
 
 ## Protect wp-config.php file
+**Apache**
 ```
 # protect wpconfig.php
 
@@ -35,7 +36,17 @@ Both should work on litespeed.
 </IfModule>
 ```
 
+**LiteSpeed**
+```
+# protect wpconfig.php
+<Files wp-config.php>
+ Order deny,allow
+ Deny from all
+</Files>
+```
+
 ## Protect special files
+**Apache**
 ```
 # protect special files
 
@@ -53,6 +64,15 @@ Both should work on litespeed.
   </RequireAll>
  </Files>
 </IfModule>
+```
+
+**LiteSpeed**
+```
+# protect special files
+<Files readme.html>
+ Order deny,allow
+ Deny from all
+</Files>
 ```
 
 ## Password protect wp-login
