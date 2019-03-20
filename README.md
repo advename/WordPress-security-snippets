@@ -16,6 +16,7 @@ There's a check in place to execute only version specific code for apache:
 Both should work on litespeed.
 
 ## Protect wp-config.php file
+The wp-config.php file contains crucial information about your WordPress installation. This file in the hands of a foe can do real harm.
 **Apache**
 ```
 # protect wpconfig.php
@@ -46,6 +47,7 @@ Both should work on litespeed.
 ```
 
 ## Protect special files
+These files contains some minor vital information about your site such as WordPress version. It's another little step for more security.
 **Apache**
 ```
 # protect special files
@@ -164,11 +166,13 @@ Allow from env=noauth
 ```
 
 ## Disable directory listing
+Dont show the content (folders/files) on your server.
 ```
 #disable directory listing
 Options All -Indexes
 ```
 ## Disable the server signature
+By default almost all Apache installation shows sensitive server information with Apache version number, server operating system details, installed Apache modules, PHP-version and so on. Attackers can use this information when performing attacks.
 ```
 #disable the server signature
 ServerSignature Off
