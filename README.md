@@ -52,13 +52,35 @@ Both should work on litespeed.
 
 <IfModule !mod_authz_core.c>
  <Files readme.html>
-  Order deny,allow
-  Deny from all
- </Files>
+ Order deny,allow
+ Deny from all
+</Files>
+
+<Files license.txt>
+ Order deny,allow
+ Deny from all
+</Files>
+
+<Files wp-config-sample.php>
+ Order deny,allow
+ Deny from all
+</Files>
 </IfModule>
 
 <IfModule mod_authz_core.c>
  <Files readme.html>
+  <RequireAll>
+   Require all denied
+  </RequireAll>
+ </Files>
+ 
+ <Files license.txt>
+  <RequireAll>
+   Require all denied
+  </RequireAll>
+ </Files>
+ 
+ <Files license.txt>
   <RequireAll>
    Require all denied
   </RequireAll>
@@ -70,6 +92,16 @@ Both should work on litespeed.
 ```
 # protect special files
 <Files readme.html>
+ Order deny,allow
+ Deny from all
+</Files>
+
+<Files license.txt>
+ Order deny,allow
+ Deny from all
+</Files>
+
+<Files wp-config-sample.php>
  Order deny,allow
  Deny from all
 </Files>
@@ -133,10 +165,12 @@ Allow from env=noauth
 
 ## Disable directory listing
 ```
+#disable directory listing
 Options All -Indexes
 ```
 ## Disable the server signature
 ```
+#disable the server signature
 ServerSignature Off
 ```
 
